@@ -14,7 +14,7 @@ GNUPLOT_SETTINGS+=initial_iso=\"2020-10-27T00:00\"
 
 PLOT=gnuplot $(foreach s,$(GNUPLOT_SETTINGS),-e "$(s)")
 
-all: output/burndown.ps output/burndown.pdf showburndown
+all: output/burndown.ps output/burndown.pdf output/burndown.png showburndown
 
 showburndown:
 	$(PLOT) -p -e "set term qt size 1200,1024" $(GNUPLOT_FILE)
@@ -23,10 +23,13 @@ output:
 	mkdir -p output
 
 output/burndown.pdf: $(GNUPLOT_FILE) makefile | output
-	$(PLOT) -e "set term postscript $(PAGE_SETTINGS)" $< > $@
+	$(PLOT) -e "set term pdf $(PAGE_SETTINGS)" $< > $@
 
 output/burndown.ps: $(GNUPLOT_FILE) makefile | output
-	$(PLOT) -e "set term pdf $(PAGE_SETTINGS)" $< > $@
+	$(PLOT) -e "set term postscript $(PAGE_SETTINGS)" $< > $@
+
+output/burndown.png: $(GNUPLOT_FILE) makefile | output
+	$(PLOT) -e "set term png" $< > $@
 
 clean:
 	rm -rf output
