@@ -181,7 +181,7 @@ set logscale y 10
 # set yrange [0:*]
 
 distance_to_rate(d, r) = (last_y - ((d-now)/s_day * r))
-sequence_file = sprintf("<seq 0 %d", int(max_x))
+sequence_file = sprintf("<seq 0 .5 %d", int(max_x))
 
 plot \
 last_y - ((stretch-now)/s_day * x) with lines title "", \
