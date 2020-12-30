@@ -48,7 +48,7 @@ set yrange [0:objective]
 set xrange [initial:target]
 s_day = 24*60*60
 
-accumulated_data = '<awk "{km = \$2 * \$3; x+=km; print \$1, km, x}" log.tsv'
+accumulated_data = '<awk -f prepare-data.awk log.tsv'
 
 set title "Big Picture"
 
