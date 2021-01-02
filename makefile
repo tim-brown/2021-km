@@ -16,7 +16,7 @@ PLOT=gnuplot $(foreach s,$(GNUPLOT_SETTINGS),-e "$(s)")
 
 all: all-files showburndown
 
-all-files: output/burndown.ps output/burndown.pdf output/burndown.png
+all-files: output/burndown.ps output/burndown.pdf output/burndown.png output/burndown-huge.png
 
 showburndown:
 	$(PLOT) -p -e "set term qt size 1200,1024" $(GNUPLOT_FILE)
@@ -31,6 +31,9 @@ output/burndown.ps: $(GNUPLOT_FILE) makefile | output
 	$(PLOT) -e "set term postscript $(PAGE_SETTINGS)" $< > $@
 
 output/burndown.png: $(GNUPLOT_FILE) makefile | output
+	$(PLOT) -e "set term png size 1920,1080" $< > $@
+
+output/burndown-huge.png: $(GNUPLOT_FILE) makefile | output
 	$(PLOT) -e "set term png size 3840,2160" $< > $@
 
 clean:

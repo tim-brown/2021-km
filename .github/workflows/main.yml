@@ -34,7 +34,7 @@ jobs:
       - name: render
         run: |
           make clean
-          make -j output/burndown.ps output/burndown.pdf output/burndown.png
+          make -j all-files
           mv output /tmp
 
       - name: merge into gh-pages
@@ -45,7 +45,7 @@ jobs:
           git checkout gh-pages
           rm -rf output
           mv /tmp/output .
-          git add output/burndown.ps output/burndown.pdf output/burndown.png
+          git add output/burndown*
           git commit -am "ci built graphs $(date +%Y%m%dT%H%M)"
 
       - name: push
