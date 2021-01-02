@@ -1,6 +1,6 @@
 ## Welcome to 2021 km tracker
 
-![Current burndown graph:](output/bundown.png)
+![Current burndown graph](output/burndown.png)
 
 [PDF version](output/burndown.pdf)
 
