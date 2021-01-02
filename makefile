@@ -31,7 +31,7 @@ output/burndown.ps: $(GNUPLOT_FILE) makefile | output
 	$(PLOT) -e "set term postscript $(PAGE_SETTINGS)" $< > $@
 
 output/burndown.png: $(GNUPLOT_FILE) makefile | output
-	$(PLOT) -e "set term png" $< > $@
+	$(PLOT) -e "set term png size 3840,2160" $< > $@
 
 clean:
 	rm -rf output
