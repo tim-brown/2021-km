@@ -14,7 +14,9 @@ GNUPLOT_SETTINGS+=initial_iso=\"2020-10-27T00:00\"
 
 PLOT=gnuplot $(foreach s,$(GNUPLOT_SETTINGS),-e "$(s)")
 
-all: output/burndown.ps output/burndown.pdf output/burndown.png showburndown
+all: all-files showburndown
+
+all-files: output/burndown.ps output/burndown.pdf output/burndown.png
 
 showburndown:
 	$(PLOT) -p -e "set term qt size 1200,1024" $(GNUPLOT_FILE)
