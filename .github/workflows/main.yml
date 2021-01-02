@@ -35,6 +35,7 @@ jobs:
         run: |
           make clean
           make -j output/burndown.ps output/burndown.pdf output/burndown.png
+          mv output /tmp
 
       - name: merge into gh-pages
         run: |
@@ -42,6 +43,8 @@ jobs:
           git config --global user.name "tb2 Github CI User"
           git fetch origin gh-pages
           git checkout gh-pages
+          rm -rf output
+          mv /tmp/output .
           git add output/burndown.ps output/burndown.pdf output/burndown.png
           git commit -am "ci built graphs $(date +%Y%m%dT%H%M)"
 
