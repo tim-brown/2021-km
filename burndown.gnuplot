@@ -188,3 +188,12 @@ last_y - ((stretch-now)/s_day * x) with lines title "", \
 last_y - ((target-now)/s_day * x) with lines title "", \
 sequence_file using 1:(distance_to_rate(stretch, $1)):(sprintf("%d", distance_to_rate(stretch, column(1)))) with labels title "", \
 sequence_file using 1:(distance_to_rate(target, $1)):(sprintf("%d", distance_to_rate(target, column(1)))) with labels title "" \
+
+unset logscale y
+set label sprintf("now: %.3f km/d", last_y/((stretch - now)/s_day)) at -0.1,-0.2 right
+set label sprintf("now: %.3f km/d", last_y/((target - now)/s_day)) at -0.1,0.2 right
+set label sprintf("now: %.3f mi/d", last_y/((stretch - now)/s_day)/1.6) at 0.1,-0.2 left
+set label sprintf("now: %.3f mi/d", last_y/((target - now)/s_day)/1.6) at 0.1,0.2 left
+set xrange [-1:1]
+set yrange [-1:1]
+plot 0,-2
